@@ -58,4 +58,6 @@ class AccountMove(models.Model):
                 msg = _('%s created from invoice') % (asset_name)
                 msg += ': <a href=# data-oe-model=account.move data-oe-id=%d>%s</a>' % (invoice.id, invoice.name)
                 asset.message_post(body=msg)
+                new_name = '%s - %s' % (invoice.name, asset.name)
+                asset.write({'name':new_name})
         return assets
